@@ -16,7 +16,7 @@ Bem-vindo ao meu repositório de **estudos e projetos em PHP**! Aqui, estou prat
 ## 🔧 Tecnologias Usadas
 
 - **PHP**: Linguagem principal para o desenvolvimento de todos os projetos neste repositório.
-- **MySQL** / **SQLite**: Para persistência de dados em alguns projetos.
+- **PostgreSQL**: Para persistência de dados em alguns projetos.
 - **APIs RESTful**: Para consumo e criação de APIs.
 - **Algoritmos e Estruturas de Dados**: Diversos desafios de programação para reforçar os conceitos fundamentais de programação.
 
@@ -32,11 +32,7 @@ Bem-vindo ao meu repositório de **estudos e projetos em PHP**! Aqui, estou prat
    - Projeto simples de CRUD (Create, Read, Update, Delete) utilizando PHP para construir uma API.
    - Aprendizado de como criar rotas e endpoints para manipulação de dados.
 
-### 3. **Consumo de API de Clima**
-   - Projeto onde o PHP consome uma API externa para obter dados de clima e exibir as informações no navegador.
-   - Desenvolvimento de funções para tratar e exibir dados JSON.
-
-### 4. **Desafio de Algoritmos**
+### 3. **Desafio de Algoritmos**
    - Scripts que implementam algoritmos clássicos como ordenação, busca binária e cálculo de números primos em PHP.
 
 ---
@@ -47,4 +43,4 @@ Para rodar os projetos deste repositório, basta ter o PHP instalado em seu ambi
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/repositorio-php.git
+   git clone https://github.com/ArtJord/phpDiariamente.git
