@@ -3,7 +3,7 @@
 //array que armazena os usuarios 
 $usuarios = [];
 
-function cadastrarUsuario(&$usuarios){
+function cadastrarUsuarios(&$usuarios){
     $nome = readline("Digite o nome do usuario: ");
     $email = readline("Digite o email do usuario: ");
     $idade = readline("Digite a idade do usuario: ");
@@ -29,6 +29,18 @@ function cadastrarUsuario(&$usuarios){
 
 }
 
+function listarUsuarios($usuarios){
+    if(empty($usuarios)){
+        echo "Nenhum usuario cadastrado.\n";
+        return;
+    }
+    echo "Lista de usuarios.\n";
+    foreach($usuarios as $usuario){
+        echo "Nome: " . $usuario
+        ['nome'] . " | Email: " . $usuario ['email'] . "| idade: " . $usuario['idade'] . "\n";
+    }
+}
+
 while(true){
     echo "\n Escolha uma opção:\n";
     echo "1. Cadastrar usuario\n";
@@ -39,7 +51,7 @@ while(true){
     
     switch($opcao){
         case 1:
-            cadastrarUsuario($usuarios);
+            cadastrarUsuarios($usuarios);
             break;
             
         case 2:
