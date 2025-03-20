@@ -1,122 +1,120 @@
-<?php
-// Array para armazenar os usuários
+<?php 
+
+//array que armazena os usuarios 
 $usuarios = [];
 
-// Função para cadastrar um usuário
-function cadastrarUsuario(&$usuarios) {
-    $nome = readline("Digite o nome do usuário: ");
-    $email = readline("Digite o email do usuário: ");
-    $idade = readline("Digite a idade do usuário: ");
+function cadastrarUsuarios(&$usuarios){
+    $nome = readline("Digite o nome do usuario: ");
+    $email = readline("Digite o email do usuario: ");
+    $idade = readline("Digite a idade do usuario: ");
 
-    // Validar a idade
-    if ($idade <= 18) {
-        echo "Erro: A idade deve ser maior que 18 anos.\n";
+    if($idade < 18){
+        echo "Erro: A idade deve ser igual ou maior que 18 anos. \n ";
         return;
     }
 
-    // Verificar se o email já está cadastrado
-    foreach ($usuarios as $usuario) {
-        if ($usuario['email'] === $email) {
-            echo "Erro: O email já está cadastrado.\n";
+    foreach ($usuarios as $usuario){
+        if($usuario['email'] == $email){
+            echo "Erro: O email ja esta cadastro. \n";
             return;
         }
     }
 
-    // Cadastrar o usuário
     $usuarios[] = [
         'nome' => $nome,
         'email' => $email,
         'idade' => $idade
     ];
-    echo "Usuário cadastrado com sucesso!\n";
+    echo "Usuario cadastrado com sucesso! \n";
+
 }
 
-// Função para listar todos os usuários cadastrados
-function listarUsuarios($usuarios) {
-    if (empty($usuarios)) {
-        echo "Nenhum usuário cadastrado.\n";
+function listarUsuarios($usuarios){
+    if(empty($usuarios)){
+        echo "Nenhum usuario cadastrado.\n";
         return;
     }
-
-    echo "Lista de Usuários:\n";
-    foreach ($usuarios as $usuario) {
-        echo "Nome: " . $usuario['nome'] . " | Email: " . $usuario['email'] . " | Idade: " . $usuario['idade'] . "\n";
+    echo "Lista de usuarios.\n";
+    foreach($usuarios as $usuario){
+        echo "Nome: " . $usuario
+        ['nome'] . " | Email: " . $usuario ['email'] . "| idade: " . $usuario['idade'] . "\n";
     }
 }
 
-// Função para editar um usuário (alterar nome ou idade)
-function editarUsuario(&$usuarios) {
-    $email = readline("Digite o email do usuário que deseja editar: ");
-    
-    foreach ($usuarios as &$usuario) {
-        if ($usuario['email'] === $email) {
-            $novoNome = readline("Digite o novo nome (deixe vazio para não alterar): ");
-            $novaIdade = readline("Digite a nova idade (deixe vazio para não alterar): ");
-            
-            if (!empty($novoNome)) {
+function editarUsuarios(&$usuarios){
+    $email = readline("Digite o email do usuario que deseja alterar: ");
+
+    foreach ($usuarios as &$usuario){
+        if($usuario['email'] === $email)
+        {
+            $novoNome = readline("Digite o novo nome do usuario ou aperte ENTER para não modificar: ");
+            $novaIdade = readline("Digite a nova idade ou aperte ENTER para não editar: ");
+
+            if(!empty($novoNome)){
                 $usuario['nome'] = $novoNome;
             }
-            
-            if (!empty($novaIdade)) {
-                if ($novaIdade > 18) {
+
+            if(!empty($novaIdade)){
+                if($novaIdade > 18){
                     $usuario['idade'] = $novaIdade;
-                } else {
-                    echo "Erro: A idade deve ser maior que 18 anos.\n";
+                }else{
+                    echo "Erro: A idade deve ser maior que 18 anos. \n";
                     return;
                 }
             }
-            echo "Usuário atualizado com sucesso!\n";
+            echo "Usuario atualizado com sucesso";
             return;
         }
     }
-
-    echo "Erro: Usuário não encontrado.\n";
+    echo "Erro: Usuario não encontrado.\n ";
 }
 
-// Função para excluir um usuário
-function excluirUsuario(&$usuarios) {
-    $email = readline("Digite o email do usuário que deseja excluir: ");
-    
+function excluirUsuario(&$usuarios){
+    $email = readline("Digite o email do usuario para excluir: ");
+
     foreach ($usuarios as $key => $usuario) {
-        if ($usuario['email'] === $email) {
+        if($usuario['email'] === $email)
+        {
             unset($usuarios[$key]);
-            echo "Usuário excluído com sucesso!\n";
+            echo "Usuario excluido com sucesso!\n";
             return;
         }
     }
-
-    echo "Erro: Usuário não encontrado.\n";
+    echo "Erro: Usuario não encontrado.\n";
 }
 
-// Menu de opções
-while (true) {
-    echo "\nEscolha uma opção:\n";
-    echo "1. Cadastrar Usuário\n";
-    echo "2. Listar Usuários\n";
-    echo "3. Editar Usuário\n";
-    echo "4. Excluir Usuário\n";
+while(true){
+    echo "\n Escolha uma opção:\n";
+    echo "1. Cadastrar usuario\n";
+    echo "2. Listar Usuarios\n";
+    echo "3. Editar Usuario\n";
+    echo "4. Excluir Usuario\n";
     echo "5. Sair\n";
 
-    $opcao = readline("Digite o número da opção: ");
+    $opcao = readline("Digite um numero da opção: ");
     
-    switch ($opcao) {
+    switch($opcao){
         case 1:
-            cadastrarUsuario($usuarios);
+            cadastrarUsuarios($usuarios);
             break;
+            
         case 2:
             listarUsuarios($usuarios);
             break;
+
         case 3:
-            editarUsuario($usuarios);
+            editarUsuarios($usuarios);
             break;
+
         case 4:
             excluirUsuario($usuarios);
             break;
+
         case 5:
-            echo "Saindo do sistema...\n";
+            echo "Saindo...";
             exit;
-        default:
-            echo "Opção inválida. Tente novamente.\n";
+
+            default:
+            echo "Opção invalida.\n";
     }
 }
-?>
