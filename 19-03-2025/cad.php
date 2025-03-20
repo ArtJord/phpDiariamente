@@ -41,11 +41,40 @@ function listarUsuarios($usuarios){
     }
 }
 
+function editarUsuarios(&$usuarios){
+    $email = readline("Digite o email do usuario que deseja alterar: ");
+
+    foreach ($usuarios as &$usuario){
+        if($usuario['email'] === $email)
+        {
+            $novoNome = readline("Digite o novo nome do usuario ou aperte ENTER para não modificar: ");
+            $novaIdade = readline("Digite a nova idade ou aperte ENTER para não editar: ");
+
+            if(!empty($novoNome)){
+                $usuario['nome'] = $novoNome;
+            }
+
+            if(!empty($novaIdade)){
+                if($novaIdade > 18){
+                    $usuario['idade'] = $novaIdade;
+                }else{
+                    echo "Erro: A idade deve ser maior que 18 anos. \n";
+                    return;
+                }
+            }
+            echo "Usuario atualizado com sucesso";
+            return;
+        }
+    }
+    echo "Erro: Usuario não encontrado.\n ";
+}
+
 while(true){
     echo "\n Escolha uma opção:\n";
     echo "1. Cadastrar usuario\n";
     echo "2. Listar Usuarios\n";
-    echo "3. Sair\n";
+    echo "3. Editar Usuario\n";
+    echo "4. Sair\n";
 
     $opcao = readline("Digite um numero da opção: ");
     
@@ -59,6 +88,10 @@ while(true){
             break;
 
         case 3:
+            editarUsuarios($usuarios);
+            break;
+
+        case 4:
             echo "Saindo...";
             exit;
 
